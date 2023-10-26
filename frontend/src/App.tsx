@@ -3,10 +3,14 @@ import "./App.css";
 import * as api from "./api.js";
 import { Recipe } from "./types.js";
 import RecipeCard from "./components/RecipeCard.js";
+import RecipeSummary from "./components/RecipeSummary.js";
 
 function App() {
-  const [searchQuery, setSearchQuery] = React.useState("burgers");
+  const [searchQuery, setSearchQuery] = React.useState("");
   const [recipes, setRecipes] = React.useState<Recipe[]>([]);
+  const [selectedRecipe, setSelectedRecipe] = React.useState<
+    Recipe | undefined
+  >(undefined);
   const pageNumber = useRef(1);
 
   const handleSearchSubmit = async (event: FormEvent) => {
@@ -46,11 +50,20 @@ function App() {
           <button type="submit">Submit</button>
         </form>
         {recipes.map((recipe) => (
-          <RecipeCard recipe={recipe} />
+          <RecipeCard
+            recipe={recipe}
+            onClick={() => setSelectedRecipe(recipe)}
+          />
         ))}
         <button className="view-more-button" onClick={handleViewMoreClick}>
           View More
         </button>
+        {selectedRecipe ? (
+          <RecipeSummary
+            recipeId={selectedRecipe.id.toString()}
+            onClose={() => setSelectedRecipe(undefined)}
+          />
+        ) : null}
       </div>
     </>
   );
