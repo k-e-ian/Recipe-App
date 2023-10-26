@@ -1,12 +1,12 @@
 import React, { FormEvent, useRef } from "react";
 import "./App.css";
-import * as api from "./api.js";
-import { Recipe } from "./types.js";
-import RecipeCard from "./components/RecipeCard.js";
-import Header from "./components/Header.js";
-import RecipeSummary from "./components/RecipeSummary.js";
+import * as api from "./api";
+import { Recipe } from "./types";
+import RecipeCard from "./components/RecipeCard";
+import Header from "./components/Header";
+import RecipeSummary from "./components/RecipeSummary";
 import { AiOutlineSearch } from "react-icons/ai";
-import Footer from "./components/Footer.js";
+import Footer from "./components/Footer";
 type Tabs = "search" | "favourites";
 
 function App() {

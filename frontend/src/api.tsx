@@ -1,5 +1,5 @@
 import fetch from "isomorphic-fetch";
-import { Recipe } from "./types.js";
+import { Recipe } from "./types";
 
 export const searchRecipes = async (searchQuery: string, page: number) => {
   const baseUrl = new URL("http://127.0.0.1:5000/api/recipe/search");

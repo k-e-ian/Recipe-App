@@ -1,6 +1,6 @@
 import React from "react";
-import { getRecipeSummary } from "../api.js";
-import { RecipeSummary } from "../types.js";
+import { getRecipeSummary } from "../api";
+import { RecipeSummary } from "../types";
 
 interface Props {
   recipeId: string;

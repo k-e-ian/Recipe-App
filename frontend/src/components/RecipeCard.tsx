@@ -1,4 +1,4 @@
-import { Recipe } from "../types.js";
+import { Recipe } from "../types";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 interface Props {
