@@ -4,7 +4,6 @@ import * as api from "./api.js";
 import { Recipe } from "./types.js";
 import RecipeCard from "./components/RecipeCard.js";
 import RecipeSummary from "./components/RecipeSummary.js";
-
 type Tabs = "search" | "favourites";
 
 function App() {
@@ -14,7 +13,20 @@ function App() {
     Recipe | undefined
   >(undefined);
   const [selectedTab, setSelectedTab] = React.useState<Tabs>("search");
+  const [favouriteRecipes, setFavouriteRecipes] = React.useState<Recipe[]>([]);
   const pageNumber = useRef(1);
+
+  React.useEffect(() => {
+    const fetchFavouriteRecipes = async () => {
+      try {
+        const favouriteRecipes = await api.getFavouriteRecipes();
+        setFavouriteRecipes(favouriteRecipes.results);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchFavouriteRecipes();
+  }, []);
 
   const handleSearchSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -39,6 +51,15 @@ function App() {
     }
   };
 
+  const addFavouriteRecipes = async (recipe: Recipe) => {
+    try {
+      await api.addFavouriteRecipes(recipe);
+      setFavouriteRecipes([...favouriteRecipes, recipe]);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <>
       <div>
@@ -58,10 +79,12 @@ function App() {
               ></input>
               <button type="submit">Submit</button>
             </form>
-            {recipes.map((recipe) => (
+            {recipes.map((recipe, index) => (
               <RecipeCard
+                key={index}
                 recipe={recipe}
                 onClick={() => setSelectedRecipe(recipe)}
+                onFavouriteButtonClick={addFavouriteRecipes}
               />
             ))}
             <button className="view-more-button" onClick={handleViewMoreClick}>
@@ -70,7 +93,18 @@ function App() {
           </>
         )}
 
-        {selectedTab === "favourites" && <div>This is the favourites tab</div>}
+        {selectedTab === "favourites" && (
+          <div>
+            {favouriteRecipes.map((recipe, index) => (
+              <RecipeCard
+                key={index}
+                recipe={recipe}
+                onClick={() => setSelectedRecipe(recipe)}
+                onFavouriteButtonClick={() => undefined}
+              />
+            ))}
+          </div>
+        )}
 
         {selectedRecipe ? (
           <RecipeSummary
