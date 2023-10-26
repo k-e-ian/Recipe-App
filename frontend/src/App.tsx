@@ -5,12 +5,15 @@ import { Recipe } from "./types.js";
 import RecipeCard from "./components/RecipeCard.js";
 import RecipeSummary from "./components/RecipeSummary.js";
 
+type Tabs = "search" | "favourites";
+
 function App() {
   const [searchQuery, setSearchQuery] = React.useState("");
   const [recipes, setRecipes] = React.useState<Recipe[]>([]);
   const [selectedRecipe, setSelectedRecipe] = React.useState<
     Recipe | undefined
   >(undefined);
+  const [selectedTab, setSelectedTab] = React.useState<Tabs>("search");
   const pageNumber = useRef(1);
 
   const handleSearchSubmit = async (event: FormEvent) => {
@@ -39,25 +42,36 @@ function App() {
   return (
     <>
       <div>
-        <form onSubmit={(event) => handleSearchSubmit(event)}>
-          <input
-            type="text"
-            required
-            placeholder="Enter a search ..."
-            value={searchQuery}
-            onChange={(event) => setSearchQuery(event.target.value)}
-          ></input>
-          <button type="submit">Submit</button>
-        </form>
-        {recipes.map((recipe) => (
-          <RecipeCard
-            recipe={recipe}
-            onClick={() => setSelectedRecipe(recipe)}
-          />
-        ))}
-        <button className="view-more-button" onClick={handleViewMoreClick}>
-          View More
-        </button>
+        <div className="tabs">
+          <h1 onClick={() => setSelectedTab("search")}> Recipe Search </h1>
+          <h1 onClick={() => setSelectedTab("favourites")}> Favourites </h1>
+        </div>
+        {selectedTab === "search" && (
+          <>
+            <form onSubmit={(event) => handleSearchSubmit(event)}>
+              <input
+                type="text"
+                required
+                placeholder="Enter a search ..."
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+              ></input>
+              <button type="submit">Submit</button>
+            </form>
+            {recipes.map((recipe) => (
+              <RecipeCard
+                recipe={recipe}
+                onClick={() => setSelectedRecipe(recipe)}
+              />
+            ))}
+            <button className="view-more-button" onClick={handleViewMoreClick}>
+              View More
+            </button>
+          </>
+        )}
+
+        {selectedTab === "favourites" && <div>This is the favourites tab</div>}
+
         {selectedRecipe ? (
           <RecipeSummary
             recipeId={selectedRecipe.id.toString()}
