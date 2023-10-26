@@ -1,9 +1,151 @@
-#root {
-  font-family: Arial, Helvetica, sans-serif;
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "DrWeb Bold";
+  src: url("https://clevertech.biz/_next/static/media/drweb-bold.1d8c9d14.woff")
+    format("woff");
+  /* You can add other font formats (e.g., woff2) for better browser compatibility */
+}
+
+@font-face {
+  font-family: "Basis Grotesque Regular Pro";
+  src: url("https://clevertech.biz/_next/static/media/basis-grotesque-regular-pro.1e211fad.woff2")
+    format("woff2");
+  /* Add additional font formats as needed for browser compatibility */
+}
+
+body {
+  padding-top: 5em;
+  padding-bottom: 5em;
+  height: 100vh;
+  background-color: rgb(238, 238, 238);
+  font-family: "Basis Grotesque Regular Pro", "karla";
+}
+
+@media (min-width: 768px) {
+  body {
+    margin-left: 10em;
+    margin-right: 10em;
+  }
+}
+
+.tab-active {
+  border-bottom: 4px orangered solid;
+  padding-bottom: 0.5em;
+}
+
+form {
+  display: flex;
+  background-color: aliceblue;
+  align-items: center;
+}
+
+input {
+  font-family: "Basis Grotesque Regular Pro", "karla";
+
+  padding: 10px;
+  font-size: 1.2em;
+  border: none;
+  background-color: aliceblue;
+  flex: 1;
+}
+
+input:focus {
+  outline: none;
+}
+
+button {
+  background-color: aliceblue;
+  border: none;
+  cursor: pointer;
+}
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1em;
+}
+
+.recipe-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 0.8em;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+  position: relative;
+  cursor: pointer;
+  gap: 1.5em;
+  border-radius: 20px;
+}
+
+.recipe-card h3 {
+  font-size: 0.85em;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.view-more-button {
+  font-size: 1em;
+  padding: 1em;
+  font-weight: bold;
+  margin: auto;
+  background-color: aliceblue;
+  width: 100%;
+  border-radius: 1em;
+  font-family: "Basis Grotesque Regular Pro", "karla";
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.slogan {
+  font-family: "Basis Grotesque Regular Pro", "karla";
+}
+
+.header--img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  object-position: center;
+  opacity: 50%;
+  border-radius: 1em;
+}
+
+.card--img {
+  border-radius: 1em;
+  margin-bottom: -10px;
+}
+
+.title {
+  position: absolute;
+  color: orangered;
+  font-size: 1.5em;
+  text-align: center;
+  background-color: black;
+  opacity: 80%;
+  padding: 0.5em 1.5em 0.5em 1.5em;
+  border-radius: 20px;
+  font-family: "DrWeb Bold";
 }
 
 .recipe-card {
   cursor: pointer;
+  background-color: rgb(226, 229, 232);
 }
 
 .overlay {
@@ -23,6 +165,7 @@
   transform: translate(-50%, -50%);
   z-index: 2;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: orangered;
 }
 
 .summary-header {
@@ -33,7 +176,14 @@
 }
 
 .summary-content {
-  background-color: white;
+  background: linear-gradient(
+    to top left,
+    rgb(0, 0, 0, 0.7) 0%,
+    aliceblue 25%,
+    aliceblue 50%,
+    aliceblue 75%,
+    rgb(0, 0, 0, 0.7) 100%
+  );
   padding: 2em;
   border-radius: 20px;
   max-width: 500px;
@@ -41,6 +191,7 @@
 
 .close-btn {
   cursor: pointer;
+  font-size: 2.5em;
 }
 
 .tabs {
@@ -49,8 +200,32 @@
   cursor: pointer;
 }
 
+.tabs h1 {
+  font-size: 1em;
+}
+
 .recipe-card-title {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: left;
+  gap: 5px;
+}
+
+.footer {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 30px;
+  color: orangered;
+  background: black;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    aliceblue 0%,
+    black 50%,
+    aliceblue 100%
+  );
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
 }
