@@ -6,9 +6,7 @@ export default function Footer() {
         Rights Reserved.
       </small>
       <h3 className="footer-foot">Spoonfed Recipes</h3>
-      <small className="slogan" style={{ fontStyle: "italic" }}>
-        Eat Up Proud with Spoonfed Recipes
-      </small>
+      <h5>Eat Up Proud with Spoonfed Recipes</h5>
     </footer>
   );
 }

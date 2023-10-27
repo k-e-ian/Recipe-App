@@ -229,3 +229,14 @@ button {
   align-items: center;
   justify-content: center;
 }
+
+.footer-pg {
+  font-size: smaller;
+}
+
+.footer-foot {
+  font-size: x-large;
+}
+text {
+  font-size: smaller;
+}
