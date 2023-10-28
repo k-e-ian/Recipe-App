@@ -3,6 +3,7 @@ import "./App.css";
 import * as api from "./api";
 import { Recipe } from "./types";
 import RecipeCard from "./components/RecipeCard";
+import Hero from "./components/Hero";
 import Header from "./components/Header";
 import RecipeSummary from "./components/RecipeSummary";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -77,8 +78,9 @@ function App() {
 
   return (
     <>
+      <Header />
       <div className="container">
-        <Header />
+        <Hero />
         <div className="tabs">
           <h1
             className={selectedTab === "search" ? "tab-active" : ""}

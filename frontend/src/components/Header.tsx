@@ -1,16 +1,9 @@
-import heroImg from "../../public/pexels-rachel-claire-5490825.jpg";
-
-export default function Header() {
+function Header() {
   return (
     <header className="header">
-      <img
-        className="header--img"
-        src={heroImg}
-        alt="dinner-table-woth plate and wine glass"
-      />
-      <div className="title">
-        <h3>Spoonfed Recipes</h3>
-      </div>
+      <h2 className="header--title">ike development</h2>
     </header>
   );
 }
+
+export default Header;
